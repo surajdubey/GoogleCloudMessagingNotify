@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -42,6 +43,8 @@ public class MainActivity extends ActionBarActivity {
 		mDisplay = (TextView) findViewById(R.id.display);
 		
 		gcm = GoogleCloudMessaging.getInstance(this);
+		
+		new RegisterBackGround().execute();
 
 	}
 
@@ -102,7 +105,8 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		protected void onPostExecute(String msg) {
 			
-			mDisplay.append(msg+"\n");
+			mDisplay.setText("Reached: "+msg);
+			//mDisplay.append(msg+"\n");
 		}
 		
 		private void saveRegistrationId(String regId)
@@ -119,6 +123,7 @@ public class MainActivity extends ActionBarActivity {
 			
 			try{
 				httppost.setEntity(new UrlEncodedFormEntity(params));
+				HttpResponse response = httpclient.execute(httppost);
 				
 			}
 			

@@ -39,8 +39,7 @@ public class GcmIntentService extends IntentService{
 		{
 			if(GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType))
 			{
-				
-				
+				sendNotification("Send error: " + extras.toString());
 			}
 			
 			else
@@ -68,8 +67,6 @@ public class GcmIntentService extends IntentService{
 			GcmBroadcastReceiver.completeWakefulIntent(intent);
 			}
 				
-				
-				
 	} //else
 			
 	private void sendNotification(String msg) {
@@ -92,9 +89,5 @@ public class GcmIntentService extends IntentService{
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
-
-	
-	
-	
 
 }//class
