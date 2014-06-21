@@ -7,15 +7,16 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="com.gogle.android.c2dm.premission.RECEIVE"/>
-    
-    <permission 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.gogle.android.c2dm.premission.RECEIVE" />
+
+    <permission
         android:name="com.suraj.notify.permission.C2D_MESSAGE"
-        android:protectionLevel="signature"
-        ></permission>
+        android:protectionLevel="signature" >
+    </permission>
 
     <application
         android:allowBackup="true"
@@ -32,23 +33,31 @@
             </intent-filter>
         </activity>
         
-        <receiver android:name="com.suraj.notify.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND">
+        
+        <activity
+            android:name="com.suraj.notify.ReceiveActivity"
+            android:label="@string/title_activity_receive" >
+        </activity>
+
+        <receiver
+            android:name="com.suraj.notify.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                    <category android:name="com.suraj.notify" />
-                
+
+                <category android:name="com.suraj.notify" />
             </intent-filter>
         </receiver>
-        
-        <service android:name="com.suraj.notify.GcmIntentService"></service>
-        
-        <meta-data 
+
+        <service android:name="com.suraj.notify.GcmIntentService" >
+        </service>
+
+        <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"
-            />
+            android:value="@integer/google_play_services_version" />
+
     </application>
-    
-    
 
 </manifest>
+    
+
