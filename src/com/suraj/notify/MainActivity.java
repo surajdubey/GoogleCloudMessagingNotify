@@ -1,6 +1,14 @@
 package com.suraj.notify;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -99,7 +107,26 @@ public class MainActivity extends ActionBarActivity {
 		
 		private void saveRegistrationId(String regId)
 		{
-			//
+			//data is sent to server and saved into database on server
+			
+			String url="";
+			
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			
+			params.add(new BasicNameValuePair("regid", regId));
+			DefaultHttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(url);
+			
+			try{
+				httppost.setEntity(new UrlEncodedFormEntity(params));
+				
+			}
+			
+			catch(Exception e1)
+			{
+				e1.printStackTrace();
+				
+			}
 			
 		}
 		
