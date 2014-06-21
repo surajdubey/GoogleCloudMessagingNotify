@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity {
 		{
 			//data is sent to server and saved into database on server
 			
-			String url="";
+			String url="http://surajdubey.com/projects/notify/saveDevice.php";
 			
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			
