@@ -85,15 +85,16 @@ public class MainActivity extends ActionBarActivity {
 				if(gcm == null)
 				{
 					gcm = GoogleCloudMessaging.getInstance(context);
-					
-					msg = "Device Registered: RegID = "+regId;
-					Log.d("111", msg);
-					
-					// Device Registered. Save to database
-					saveRegistrationId(regId);
 				}
 				
 				regId = gcm.register(SENDER_ID);
+				msg = "Device Registered: RegID = "+regId;
+				Log.d("111", msg);
+					
+					// Device Registered. Save to database
+					saveRegistrationId(regId);
+				
+				
 			}
 			catch (IOException e) {
 				msg = "Error: = " +e.getMessage();
