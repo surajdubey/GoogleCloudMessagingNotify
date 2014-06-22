@@ -12,6 +12,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
 	TextView mDisplay;
 	Context context;
 	String regId;
+	String username;
 	
 	String SENDER_ID = "916067693415"; //project number here
 
@@ -43,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
 		mDisplay = (TextView) findViewById(R.id.display);
 		
 		gcm = GoogleCloudMessaging.getInstance(this);
+		
+		username = getIntent().getStringExtra("username");
 		
 		new RegisterBackGround().execute();
 
@@ -114,17 +119,23 @@ public class MainActivity extends ActionBarActivity {
 		{
 			//data is sent to server and saved into database on server
 			
-			String url="http://surajdubey.com/projects/notify/saveDevice.php";
+			String url="http://surajdubey.com/projects/notify/registerUser.php";
 			
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			
 			params.add(new BasicNameValuePair("regid", regId));
+			params.add(new BasicNameValuePair("username", username));
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(url);
 			
 			try{
 				httppost.setEntity(new UrlEncodedFormEntity(params));
 				HttpResponse response = httpclient.execute(httppost);
+				
+				SharedPreferences prefs = getSharedPreferences("notify", MODE_PRIVATE);
+				Editor editor = prefs.edit();
+				editor.putBoolean("register", true);
+				editor.commit();
 				
 			}
 			

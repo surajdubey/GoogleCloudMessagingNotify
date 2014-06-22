@@ -335,12 +335,13 @@ int id action_context_bar 0x7f07002f
 int id action_menu_divider 0x7f070028
 int id action_menu_presenter 0x7f070029
 int id action_mode_close_button 0x7f070036
-int id action_settings 0x7f070054
+int id action_settings 0x7f070057
 int id activity_chooser_view_content 0x7f070037
 int id address 0x7f070052
 int id always 0x7f07001e
 int id beginning 0x7f070023
 int id book_now 0x7f070010
+int id btnRegister 0x7f070055
 int id buyButton 0x7f07000a
 int id buy_now 0x7f07000f
 int id buy_with_google 0x7f07000e
@@ -356,6 +357,7 @@ int id display 0x7f07004f
 int id dropdown 0x7f070022
 int id edit_query 0x7f070042
 int id end 0x7f070025
+int id etUserName 0x7f070054
 int id expand_activities_button 0x7f070038
 int id expanded_menu 0x7f07003e
 int id grayscale 0x7f070012
@@ -404,6 +406,7 @@ int id tabMode 0x7f070015
 int id terrain 0x7f070003
 int id title 0x7f07003d
 int id top_action_bar 0x7f070032
+int id tvError 0x7f070056
 int id up 0x7f070033
 int id useLogo 0x7f070016
 int id valid 0x7f070051
@@ -437,9 +440,13 @@ int layout abc_search_view 0x7f030016
 int layout abc_simple_decor 0x7f030017
 int layout activity_main 0x7f030018
 int layout activity_receive 0x7f030019
-int layout support_simple_spinner_dropdown_item 0x7f03001a
+int layout fragment_register 0x7f03001a
+int layout fragment_welcome 0x7f03001b
+int layout support_simple_spinner_dropdown_item 0x7f03001c
 int menu main 0x7f0c0000
 int menu receive 0x7f0c0001
+int menu register 0x7f0c0002
+int menu welcome 0x7f0c0003
 int string abc_action_bar_home_description 0x7f050021
 int string abc_action_bar_up_description 0x7f050022
 int string abc_action_menu_overflow_description 0x7f050023
@@ -488,6 +495,8 @@ int string common_signin_button_text 0x7f05001d
 int string common_signin_button_text_long 0x7f05001e
 int string hello_world 0x7f05002e
 int string title_activity_receive 0x7f050030
+int string title_activity_register 0x7f050031
+int string title_activity_welcome 0x7f050032
 int string wallet_buy_button_place_holder 0x7f05001f
 int style AppBaseTheme 0x7f09008f
 int style AppTheme 0x7f090090
