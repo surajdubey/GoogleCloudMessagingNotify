@@ -21,8 +21,8 @@ public class GcmIntentService extends IntentService{
 	private NotificationManager mNotificationManager;
 	NotificationCompat.Builder builder;
 	
-	public GcmIntentService(String name) {
-		super("GCMIntentService");
+	public GcmIntentService() {
+		super("GcmIntentService");
 		// TODO Auto-generated constructor stub
 	}
 
