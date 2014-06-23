@@ -4,14 +4,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
@@ -81,6 +87,15 @@ public class MainActivity extends ActionBarActivity {
 	
 	class RegisterBackGround extends AsyncTask<String, String, String>
 	{
+		JSONArray dataarray;
+		ProgressDialog dialog;
+
+		boolean saved = false;
+		
+		@Override
+		protected void onPreExecute() {
+			dialog = ProgressDialog.show(context, "Please Wait..", "Registering..");
+		}
 
 		@Override
 		protected String doInBackground(String... args0) {
@@ -88,6 +103,7 @@ public class MainActivity extends ActionBarActivity {
 			String msg = "";
 			try{
 				if(gcm == null)
+					
 				{
 					gcm = GoogleCloudMessaging.getInstance(context);
 				}
@@ -111,8 +127,20 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		protected void onPostExecute(String msg) {
 			
-			mDisplay.setText("Reached: "+msg);
+			mDisplay.setText("Reached: "+msg+"\n\n\n");
+			dialog.dismiss();
 			//mDisplay.append(msg+"\n");
+			
+			if(saved == false)
+			{
+				finish();
+				Intent intent = new Intent(context , RegisterActivity.class);
+				startActivity(intent);
+			}
+			else
+			{
+				mDisplay.append("username is registered!! \n\n");
+			}
 		}
 		
 		private void saveRegistrationId(String regId)
@@ -130,13 +158,42 @@ public class MainActivity extends ActionBarActivity {
 			
 			try{
 				httppost.setEntity(new UrlEncodedFormEntity(params));
-				HttpResponse response = httpclient.execute(httppost);
+				HttpResponse httpresponse = httpclient.execute(httppost);
 				
-				SharedPreferences prefs = getSharedPreferences("notify", MODE_PRIVATE);
-				Editor editor = prefs.edit();
-				editor.putBoolean("register", true);
-				editor.commit();
+				HttpEntity httpentity = httpresponse.getEntity();
 				
+				String response = EntityUtils.toString(httpentity);
+				
+				if(response!=null)
+				{
+					dataarray = new JSONArray(response);
+					String success;
+					JSONObject successResponse;
+					try{
+						successResponse = dataarray.getJSONObject(0);
+						success = successResponse.getString("success");
+						
+						if(success.equals("1"))
+						{
+							
+							SharedPreferences prefs = getSharedPreferences("notify", MODE_PRIVATE);
+							Editor editor = prefs.edit();
+							editor.putBoolean("register", true);
+							editor.commit();
+							saved = true;
+						}
+						
+						else
+						{
+							dialog.setMessage("Username is already taken");
+						}
+					}
+					
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
 			}
 			
 			catch(Exception e1)

@@ -1,5 +1,6 @@
 package com.suraj.notify;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -83,26 +84,4 @@ public class RegisterActivity extends ActionBarActivity {
 	}
 
 
-	private class RegisterUser extends AsyncTask<String,String,String>
-	{
-
-		@Override
-		protected void onPreExecute() {
-		
-			
-		}
-		@Override
-		protected String doInBackground(String... params) {
-			return null;
-			
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-		}
-		
-		
 	}
-}
