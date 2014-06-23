@@ -25,11 +25,14 @@ public class WelcomeActivity extends ActionBarActivity {
 			finish();
 			startActivity(new Intent(getApplicationContext() , RegisterActivity.class));
 			
-		}
-		else
-		{
 			
 		}
+		
+		else
+		{
+			setContentView(R.layout.fragment_welcome);
+		}
+		
 
 	}
 

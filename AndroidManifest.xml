@@ -19,6 +19,7 @@
     </permission>
 
     <uses-permission android:name="com.suraj.notify.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"

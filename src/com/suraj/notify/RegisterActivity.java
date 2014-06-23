@@ -32,6 +32,8 @@ public class RegisterActivity extends ActionBarActivity {
 		etUserName = (EditText) findViewById(R.id.etUserName);
 		tvError = (TextView) findViewById(R.id.tvError);
 		
+		tvError.setText("");
+		
 		
 		btnRegister.setOnClickListener(new OnClickListener() {
 			
